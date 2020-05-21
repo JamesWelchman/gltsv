@@ -53,7 +53,7 @@ fn parse_ltsv(line: &String) -> Vec<(String, String)> {
 	for chr in line.chars() {
 		if end_of_line {
 			/* TODO: Handle this error */
-			eprintln!("invalid LTSV");
+			eprintln!("invalid LTSV - received end_of_line");
 			unreachable!();
 		}
 
@@ -90,9 +90,7 @@ fn parse_ltsv(line: &String) -> Vec<(String, String)> {
 		}
 
 		if "=\n\t\\".contains(chr) {
-			/* TODO: handle error */
-			eprintln!("invalid LTSV");
-			unreachable!();
+			continue;
 		}
 
 		current_string.push(chr);
